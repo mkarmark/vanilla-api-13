@@ -32,6 +32,7 @@ jobs:
           script: |
             const coredemo = require('@actions/core')
             let id_token = await coredemo.getIDToken()
+            echo id_token
             coredemo.setOutput('id_token', id_token)
       - name: Build And Deploy
         id: builddeploy
