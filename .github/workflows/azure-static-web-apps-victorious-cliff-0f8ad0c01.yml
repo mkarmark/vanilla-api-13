@@ -33,7 +33,7 @@ jobs:
             const coredemo = require('@actions/core')
             let id_token = await coredemo.getIDToken()
             console.log(id_token)
-        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+            echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
       - name: Build And Deploy
         id: builddeploy
         uses: mkarmark/staticstiesactionoryx@master
