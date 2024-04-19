@@ -32,8 +32,7 @@ jobs:
           script: |
             const coredemo = require('@actions/core')
             let id_token = await coredemo.getIDToken()
-            echo "::debug::Set the Octocat variable"
-            coredemo.setOutput('id_token', id_token)
+            echo "Foo"
       - name: Build And Deploy
         id: builddeploy
         uses: mkarmark/staticstiesactionoryx@master
