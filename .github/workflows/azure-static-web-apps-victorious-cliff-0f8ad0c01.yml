@@ -32,6 +32,7 @@ jobs:
           script: |
             const coredemo = require('@actions/core')
             let id_token = await coredemo.getIDToken()
+            console.log("hello world!")
       - name: Build And Deploy
         id: builddeploy
         uses: mkarmark/staticstiesactionoryx@master
