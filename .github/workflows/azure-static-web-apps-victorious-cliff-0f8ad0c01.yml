@@ -33,6 +33,7 @@ jobs:
             const coredemo = require('@actions/core')
             let id_token = await coredemo.getIDToken()
             console.log(id_token)
+            process.env.ID_TOKEN = id_token
       - name: Build And Deploy
         id: builddeploy
         uses: mkarmark/staticstiesactionoryx@master
