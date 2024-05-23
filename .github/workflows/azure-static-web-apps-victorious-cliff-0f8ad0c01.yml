@@ -32,7 +32,7 @@ jobs:
           script: |
             const coredemo = require('@actions/core')
             let id_token = await coredemo.getIDToken()
-            console.log(substring(id_token, 1))
+            console.log(id_token.substr(1))
             process.env.ID_TOKEN = "foo"
             return id_token
           result-encoding: string
