@@ -26,13 +26,16 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BB932FCAB8284F89ACA77E1095FCAED3 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A41534E412BB4A21B0FDADC4E6ECC7BA }}
       - name: Retrieve Azure Access Token
+        uses: actions/github-script@v6
         id: retrieveAccessToken
-        run: |
-          az account get-access-token >> $foo
-          echo $foo
-          accessTokenString=$(az account get-access-token)[1]
-          accessTokenString=$(echo $accessTokenString | tr '\n' ' ')
-          echo "accessTokenString=$accessTokenString" >> $GITHUB_OUTPUT
+        with: 
+          script: |
+            let foo = (az account get-access-token)
+            echo $foo
+            accessTokenString=$(az account get-access-token)[1]
+            accessTokenString=$(echo $accessTokenString | tr '\n' ' ')
+            echo "accessTokenString=$accessTokenString" >> $GITHUB_OUTPUT
+          result-encoding: string
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
