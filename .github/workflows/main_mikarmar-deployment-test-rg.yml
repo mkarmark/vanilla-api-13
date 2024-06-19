@@ -30,7 +30,7 @@ jobs:
         id: retrieveAccessToken
         with: 
           script: |
-            let foo = (az account get-access-token)
+            az account get-access-token
             echo $foo
             accessTokenString=$(az account get-access-token)[1]
             accessTokenString=$(echo $accessTokenString | tr '\n' ' ')
