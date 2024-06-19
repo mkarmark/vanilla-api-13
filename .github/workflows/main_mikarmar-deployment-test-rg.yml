@@ -30,11 +30,7 @@ jobs:
         id: retrieveAccessToken
         with: 
           script: |
-            az account get-access-token
-            echo $foo
-            accessTokenString=$(az account get-access-token)[1]
-            accessTokenString=$(echo $accessTokenString | tr '\n' ' ')
-            echo "accessTokenString=$accessTokenString" >> $GITHUB_OUTPUT
+            console.log(`"${az account get-access-token}"`)
           result-encoding: string
       - name: Get Id Token
         uses: actions/github-script@v6
