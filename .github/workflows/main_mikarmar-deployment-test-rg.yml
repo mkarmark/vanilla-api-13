@@ -33,8 +33,18 @@ jobs:
           accessTokenString=$(az account get-access-token)[1]
           accessTokenString=$(echo $accessTokenString | tr '\n' ' ')
           echo "accessTokenString=$accessTokenString" >> $GITHUB_OUTPUT
-          console.log(`"${accessTokenString.substr(1, 1000)}"`)
-          console.log(`"${accessTokenString.substr(1001)}"`)
+      - name: Get Id Token
+        uses: actions/github-script@v6
+        id: idtoken
+        with:
+          script: |
+            let id_token = ${{ steps.retrieveAccessToken.outputs.accessTokenString }}
+            console.log(`"${id_token.substr(1, 1000)}"`)
+            console.log(`"${id_token.substr(1001)}"`)
+
+            process.env.ID_TOKEN = "foo"
+            return id_token
+          result-encoding: string
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -43,4 +53,3 @@ jobs:
           app-name: 'mikarmar-deployment-test-rg'
           slot-name: 'Production'
           package: .
-          
