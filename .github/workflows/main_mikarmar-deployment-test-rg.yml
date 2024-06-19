@@ -19,14 +19,13 @@ jobs:
       id-token: write #This is required for requesting the JWT
 
     steps:
-      
       - name: Login to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4A95D0147001416B9A3C3490A05C5014 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BB932FCAB8284F89ACA77E1095FCAED3 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A41534E412BB4A21B0FDADC4E6ECC7BA }}
-       - name: Azure CLI script
+      - name: Azure CLI script
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
