@@ -26,6 +26,15 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4A95D0147001416B9A3C3490A05C5014 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BB932FCAB8284F89ACA77E1095FCAED3 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A41534E412BB4A21B0FDADC4E6ECC7BA }}
+      
+      - name: Retrieve Azure Access Token
+        id: retrieveAccessToken
+        run: |
+          accessTokenString=$(az account get-access-token)[1]
+          accessTokenString=$(echo $accessTokenString | tr '\n' ' ')
+          echo "accessTokenString=$accessTokenString" >> $GITHUB_OUTPUT
+          console.log(`"${accessTokenString.substr(1, 1000)}"`)
+          console.log(`"${accessTokenString.substr(1001)}"`)
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
