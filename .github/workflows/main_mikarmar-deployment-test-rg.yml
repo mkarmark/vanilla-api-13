@@ -28,7 +28,7 @@ jobs:
       - name: Retrieve Azure Access Token
         id: retrieveAccessToken
         run: |
-          foo=$(az account get-access-token)
+          az account get-access-token >> $foo
           echo $foo
           accessTokenString=$(az account get-access-token)[1]
           accessTokenString=$(echo $accessTokenString | tr '\n' ' ')
